@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://cnodejs.org/user/zhang-wave -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- meta -->
+
+    <meta name="description" content="CNode：Node.js专业中文社区">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="nodejs, node, express, connect, socket.io">
+    <!-- see http://smerity.com/articles/2013/where_did_all_the_http_referrers_go.html -->
+    <meta name="referrer" content="always">
+
+    <meta name="author" content="EDP@TaoBao">
+
+    <meta property="wb:webmaster" content="617be6bd946c6b96">
+
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="https://cnodejs.org/rss">
+
+    <link rel="icon" href="https://static2.cnodejs.org/public/images/cnode_icon_32.png" type="image/x-icon">
+
+    <!-- style -->
+    <link rel="stylesheet" href="/static/css/user.css" media="all">
+
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <title>{{ user.username }}的个人主页</title>
+
+</head>
+<body>
+
+<!-- navbar -->
+<div class='navbar'>
+    <div class='navbar-inner'>
+        <div class='container'>
+            <ul class='nav pull-right'>
+                <li><a href='/topic'>首页</a></li>
+
+                <li><a href='/message'>消息</a></li>
+
+                <li><a href='/'>注册</a></li>
+
+                <li><a href='/user'>个人主页</a></li>
+                <li><a href="/setting">设置</a></li>
+                <li><a href='/topic/quit'>退出</a></li>
+
+            </ul>
+            <a class="btn btn-navbar" id="responsive-sidebar-trigger">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="main">
+    <div id="content">
+        <div class="panel">
+            <div class="inner userinfo">
+                <div class="user_big_avatar">
+                    <img src="{{ user.image }}">
+                </div>
+                <a class="dark">{{ user.username }}</a>
+
+                <p class="col_fade">注册时间: {{ time }}</p>
+
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">最近创建的话题</span>
+            </div>
+            <div class="inner">
+                {% for t in launch %}
+                    <a href="/topic/{{ t.id }}"> {{ t.title }} </a>
+                    <span class="pull-right">{{ t.created_time|format_time }}</span>
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="header">
+                <span class="col_fade">最近参与的话题</span>
+            </div>
+            <div class="inner">
+                {% for reply in join %}
+                    <a href="/topic/{{ reply[0].topic_id }}"> {{ reply[1] }} </a>
+                    <span class="pull-right">{{ reply[0].created_time|format_time }}</span>
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="backtotop" style="top: 300px; right: 0px;">回到顶部</div>
+
+</body>
+</html>
