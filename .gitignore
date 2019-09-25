@@ -2,3 +2,4 @@
 *.pyc
 secret.py
 database_secret.conf
+markdown_demo.md
